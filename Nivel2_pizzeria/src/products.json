@@ -1,0 +1,63 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "category", "price"],
+    "description": "Product document covering pizzas and other menu items (drinks, desserts, sides)",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the product"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Product name as it appears on the menu - required"
+      },
+      "category": {
+        "bsonType": "string",
+        "enum": ["pizza", "drink", "dessert", "side"],
+        "description": "Product category - required"
+      },
+      "price": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Unit price of the product in euros - required"
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Short description of the product (optional)"
+      },
+      "imageUrl": {
+        "bsonType": "string",
+        "description": "URL to the product image shown in the app (optional)"
+      },
+      "available": {
+        "bsonType": "bool",
+        "description": "Whether the product is currently available for ordering"
+      },
+      "pizzaDetails": {
+        "bsonType": "object",
+        "description": "Extra details only applicable to pizza products (optional)",
+        "properties": {
+          "size": {
+            "bsonType": "string",
+            "enum": ["small", "medium", "large", "family"],
+            "description": "Pizza size"
+          },
+          "dough": {
+            "bsonType": "string",
+            "enum": ["thin", "thick", "stuffed"],
+            "description": "Type of pizza dough"
+          },
+          "toppings": {
+            "bsonType": "array",
+            "description": "List of toppings included in the pizza",
+            "items": {
+              "bsonType": "string",
+              "description": "Topping name"
+            }
+          }
+        }
+      }
+    }
+  }
+}
