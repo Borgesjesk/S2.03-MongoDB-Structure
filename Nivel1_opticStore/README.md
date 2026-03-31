@@ -57,3 +57,8 @@ db.createCollection("glasses", {
   validator: { /* paste contents of glasses.json here */ }
 })
 ```
+
+## 🚀 Installation and Execution
+```bash
+git clone https://github.com/Borgesjesk/S2.03-MongoDB-Structure.git
+```
