@@ -1,0 +1,39 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["customerId", "glassesId", "employeeId", "soldAt", "totalPrice"],
+    "description": "Sale transaction document linking customer, glasses and employee who processed the sale",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the sale"
+      },
+      "customerId": {
+        "bsonType": "objectId",
+        "description": "Reference to the customer who made the purchase - required"
+      },
+      "glassesId": {
+        "bsonType": "objectId",
+        "description": "Reference to the glasses that were sold - required"
+      },
+      "employeeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the employee who processed the sale - required"
+      },
+      "soldAt": {
+        "bsonType": "date",
+        "description": "Date and time when the sale was completed - required"
+      },
+      "totalPrice": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Final price paid by the customer, may differ from glasses list price - required"
+      },
+      "paymentMethod": {
+        "bsonType": "string",
+        "enum": ["cash", "card", "transfer"],
+        "description": "Payment method used by the customer (optional)"
+      }
+    }
+  }
+}
