@@ -1,0 +1,56 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "address", "phone", "email", "taxId"],
+    "description": "Provider document representing a glasses supplier with contact and address details",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the provider"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Legal or commercial name of the provider - required"
+      },
+      "address": {
+        "bsonType": "object",
+        "required": ["street", "city", "postalCode", "country"],
+        "description": "Provider registered address",
+        "properties": {
+          "street": {
+            "bsonType": "string",
+            "description": "Street name and number"
+          },
+          "city": {
+            "bsonType": "string",
+            "description": "City"
+          },
+          "postalCode": {
+            "bsonType": "string",
+            "description": "Postal or ZIP code"
+          },
+          "country": {
+            "bsonType": "string",
+            "description": "Country"
+          }
+        }
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Provider contact phone number - required"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "Provider contact email address - required"
+      },
+      "taxId": {
+        "bsonType": "string",
+        "description": "Provider tax identification number (NIF/CIF) - required"
+      },
+      "contactPerson": {
+        "bsonType": "string",
+        "description": "Name of the main contact person at the provider (optional)"
+      }
+    }
+  }
+}
