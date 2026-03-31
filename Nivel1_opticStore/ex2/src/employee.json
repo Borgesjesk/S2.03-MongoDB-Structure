@@ -1,0 +1,38 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "email", "phone", "storeId", "hiredAt"],
+    "description": "Employee document representing a staff member; referenced by sales documents",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the employee"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Full name of the employee - required"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "Work email address of the employee - required"
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Contact phone number of the employee - required"
+      },
+      "storeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the store where the employee works - required"
+      },
+      "role": {
+        "bsonType": "string",
+        "enum": ["optician", "sales", "manager", "admin"],
+        "description": "Role of the employee within the store"
+      },
+      "hiredAt": {
+        "bsonType": "date",
+        "description": "Date when the employee was hired - required"
+      }
+    }
+  }
+}
