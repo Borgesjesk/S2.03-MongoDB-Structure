@@ -1,0 +1,48 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "address", "phone", "email", "registeredAt"],
+    "description": "Customer document for the pizzeria delivery system with delivery address",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the customer"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Full name of the customer - required"
+      },
+      "address": {
+        "bsonType": "object",
+        "required": ["street", "city", "postalCode"],
+        "description": "Default delivery address for the customer",
+        "properties": {
+          "street": {
+            "bsonType": "string",
+            "description": "Street name and number"
+          },
+          "city": {
+            "bsonType": "string",
+            "description": "City"
+          },
+          "postalCode": {
+            "bsonType": "string",
+            "description": "Postal or ZIP code"
+          }
+        }
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Customer contact phone for delivery coordination - required"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "Customer email address - required"
+      },
+      "registeredAt": {
+        "bsonType": "date",
+        "description": "Date the customer registered in the delivery app - required"
+      }
+    }
+  }
+}
