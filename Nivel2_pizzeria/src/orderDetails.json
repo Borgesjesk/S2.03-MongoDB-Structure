@@ -1,0 +1,91 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["customerId", "storeId", "items", "deliveryType", "status", "orderedAt", "totalPrice"],
+    "description": "Order document capturing the full delivery or pickup transaction including items, delivery info and assigned employee",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the order"
+      },
+      "customerId": {
+        "bsonType": "objectId",
+        "description": "Reference to the customer who placed the order - required"
+      },
+      "storeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the store that fulfills the order - required"
+      },
+      "items": {
+        "bsonType": "array",
+        "minItems": 1,
+        "description": "Ordered products with quantity and unit price snapshot - required",
+        "items": {
+          "bsonType": "object",
+          "required": ["productId", "name", "quantity", "unitPrice"],
+          "properties": {
+            "productId": {
+              "bsonType": "objectId",
+              "description": "Reference to the product document"
+            },
+            "name": {
+              "bsonType": "string",
+              "description": "Product name snapshot at time of order"
+            },
+            "quantity": {
+              "bsonType": "int",
+              "minimum": 1,
+              "description": "Number of units ordered"
+            },
+            "unitPrice": {
+              "bsonType": "double",
+              "minimum": 0,
+              "description": "Price per unit at time of order"
+            }
+          }
+        }
+      },
+      "deliveryType": {
+        "bsonType": "string",
+        "enum": ["delivery", "pickup"],
+        "description": "Whether the order is home delivery or store pickup - required"
+      },
+      "deliveryAddress": {
+        "bsonType": "object",
+        "description": "Delivery address (required if deliveryType is delivery)",
+        "properties": {
+          "street": { "bsonType": "string", "description": "Street name and number" },
+          "city": { "bsonType": "string", "description": "City" },
+          "postalCode": { "bsonType": "string", "description": "Postal or ZIP code" }
+        }
+      },
+      "deliveryEmployeeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the delivery employee assigned to this order (optional)"
+      },
+      "status": {
+        "bsonType": "string",
+        "enum": ["pending", "preparing", "out_for_delivery", "delivered", "cancelled"],
+        "description": "Current status of the order - required"
+      },
+      "orderedAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the order was placed - required"
+      },
+      "deliveredAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the order was delivered or picked up (optional)"
+      },
+      "totalPrice": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Total price of all items in the order - required"
+      },
+      "paymentMethod": {
+        "bsonType": "string",
+        "enum": ["cash", "card", "online"],
+        "description": "Payment method used by the customer (optional)"
+      }
+    }
+  }
+}
