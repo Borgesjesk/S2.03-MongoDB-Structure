@@ -1,0 +1,44 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "address", "phone", "email", "registeredAt"],
+    "description": "Customer document. A snapshot is embedded in sales documents for historical record keeping.",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the customer"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Full name of the customer - required"
+      },
+      "address": {
+        "bsonType": "object",
+        "required": ["street", "city", "postalCode", "country"],
+        "description": "Customer postal address",
+        "properties": {
+          "street": { "bsonType": "string", "description": "Street name and number" },
+          "city": { "bsonType": "string", "description": "City of residence" },
+          "postalCode": { "bsonType": "string", "description": "Postal or ZIP code" },
+          "country": { "bsonType": "string", "description": "Country of residence" }
+        }
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Customer contact phone number - required"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "Customer email address - required"
+      },
+      "registeredAt": {
+        "bsonType": "date",
+        "description": "Date the customer was registered in the system - required"
+      },
+      "referredBy": {
+        "bsonType": "objectId",
+        "description": "Reference to the customer who referred this customer (optional)"
+      }
+    }
+  }
+}
