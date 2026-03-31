@@ -1,0 +1,43 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "role", "storeId", "phone", "hiredAt"],
+    "description": "Employee document for pizzeria staff, distinguishing cook and delivery roles",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the employee"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Full name of the employee - required"
+      },
+      "role": {
+        "bsonType": "string",
+        "enum": ["cook", "delivery", "manager", "cashier"],
+        "description": "Job role of the employee within the pizzeria - required"
+      },
+      "storeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the store where the employee is assigned - required"
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Employee contact phone number - required"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "Employee email address (optional)"
+      },
+      "hiredAt": {
+        "bsonType": "date",
+        "description": "Date when the employee was hired - required"
+      },
+      "vehicleType": {
+        "bsonType": "string",
+        "enum": ["bicycle", "motorcycle", "car", "none"],
+        "description": "Vehicle used for delivery - only applicable to delivery role (optional)"
+      }
+    }
+  }
+}
