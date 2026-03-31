@@ -1,0 +1,53 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["glassesId", "customerId", "employeeId", "soldAt", "totalPrice"],
+    "description": "Sale document from the glasses perspective, embedding a customer snapshot for quick access",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the sale"
+      },
+      "glassesId": {
+        "bsonType": "objectId",
+        "description": "Reference to the glasses that were sold - required"
+      },
+      "customerId": {
+        "bsonType": "objectId",
+        "description": "Reference to the customer who purchased the glasses - required"
+      },
+      "customerSnapshot": {
+        "bsonType": "object",
+        "description": "Embedded customer data snapshot at time of sale for historical accuracy",
+        "properties": {
+          "name": {
+            "bsonType": "string",
+            "description": "Customer name at the time of purchase"
+          },
+          "email": {
+            "bsonType": "string",
+            "description": "Customer email at the time of purchase"
+          }
+        }
+      },
+      "employeeId": {
+        "bsonType": "objectId",
+        "description": "Reference to the employee who processed the sale - required"
+      },
+      "soldAt": {
+        "bsonType": "date",
+        "description": "Date and time when the sale was completed - required"
+      },
+      "totalPrice": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Final price paid by the customer - required"
+      },
+      "paymentMethod": {
+        "bsonType": "string",
+        "enum": ["cash", "card", "transfer"],
+        "description": "Payment method used by the customer (optional)"
+      }
+    }
+  }
+}
