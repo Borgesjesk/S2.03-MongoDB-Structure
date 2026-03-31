@@ -1,0 +1,61 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "address", "phone", "openingHours"],
+    "description": "Store document representing a physical pizzeria location with staff references",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the store"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Name or branch identifier of the store - required"
+      },
+      "address": {
+        "bsonType": "object",
+        "required": ["street", "city", "postalCode"],
+        "description": "Physical address of the store location",
+        "properties": {
+          "street": {
+            "bsonType": "string",
+            "description": "Street name and number"
+          },
+          "city": {
+            "bsonType": "string",
+            "description": "City"
+          },
+          "postalCode": {
+            "bsonType": "string",
+            "description": "Postal or ZIP code"
+          }
+        }
+      },
+      "phone": {
+        "bsonType": "string",
+        "description": "Store direct phone number - required"
+      },
+      "openingHours": {
+        "bsonType": "object",
+        "description": "Store opening hours per day of the week - required",
+        "properties": {
+          "monday": { "bsonType": "string", "description": "Monday hours e.g. 12:00-23:00" },
+          "tuesday": { "bsonType": "string", "description": "Tuesday hours" },
+          "wednesday": { "bsonType": "string", "description": "Wednesday hours" },
+          "thursday": { "bsonType": "string", "description": "Thursday hours" },
+          "friday": { "bsonType": "string", "description": "Friday hours" },
+          "saturday": { "bsonType": "string", "description": "Saturday hours" },
+          "sunday": { "bsonType": "string", "description": "Sunday hours" }
+        }
+      },
+      "employeeIds": {
+        "bsonType": "array",
+        "description": "List of employee IDs assigned to this store (optional)",
+        "items": {
+          "bsonType": "objectId",
+          "description": "Reference to an employee document"
+        }
+      }
+    }
+  }
+}
