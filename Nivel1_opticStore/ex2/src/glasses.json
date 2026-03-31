@@ -1,0 +1,88 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["brand", "graduationLeft", "graduationRight", "frameType", "frameColor", "lensColor", "price", "provider"],
+    "description": "Glasses document as root entity, embedding provider data and tracking sales history inline",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the glasses"
+      },
+      "brand": {
+        "bsonType": "string",
+        "description": "Brand name of the glasses - required"
+      },
+      "graduationLeft": {
+        "bsonType": "double",
+        "description": "Optical graduation for the left lens - required"
+      },
+      "graduationRight": {
+        "bsonType": "double",
+        "description": "Optical graduation for the right lens - required"
+      },
+      "frameType": {
+        "bsonType": "string",
+        "enum": ["floating", "plastic", "metallic"],
+        "description": "Type of frame material or construction - required"
+      },
+      "frameColor": {
+        "bsonType": "string",
+        "description": "Color of the frame - required"
+      },
+      "lensColor": {
+        "bsonType": "string",
+        "description": "Color or tint of the lenses - required"
+      },
+      "price": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Retail price of the glasses - required"
+      },
+      "provider": {
+        "bsonType": "object",
+        "required": ["name", "phone", "email"],
+        "description": "Embedded provider snapshot for fast retrieval without joins - required",
+        "properties": {
+          "providerId": {
+            "bsonType": "objectId",
+            "description": "Reference to the full provider document"
+          },
+          "name": {
+            "bsonType": "string",
+            "description": "Provider name"
+          },
+          "phone": {
+            "bsonType": "string",
+            "description": "Provider contact phone"
+          },
+          "email": {
+            "bsonType": "string",
+            "description": "Provider contact email"
+          }
+        }
+      },
+      "salesHistory": {
+        "bsonType": "array",
+        "description": "List of sale events for this pair of glasses (denormalized for read performance)",
+        "items": {
+          "bsonType": "object",
+          "required": ["saleId", "soldAt"],
+          "properties": {
+            "saleId": {
+              "bsonType": "objectId",
+              "description": "Reference to the sale document"
+            },
+            "soldAt": {
+              "bsonType": "date",
+              "description": "Date of the sale"
+            },
+            "customerId": {
+              "bsonType": "objectId",
+              "description": "Reference to the customer who bought the glasses"
+            }
+          }
+        }
+      }
+    }
+  }
+}
