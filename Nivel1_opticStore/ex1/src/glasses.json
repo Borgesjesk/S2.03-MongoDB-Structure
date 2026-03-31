@@ -1,0 +1,47 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["brand", "graduationLeft", "graduationRight", "frameType", "frameColor", "lensColor", "price", "providerId"],
+    "description": "Glasses product document with prescription data, frame details and provider reference",
+    "properties": {
+      "_id": {
+        "bsonType": "objectId",
+        "description": "Unique identifier for the glasses"
+      },
+      "brand": {
+        "bsonType": "string",
+        "description": "Brand name of the glasses - required"
+      },
+      "graduationLeft": {
+        "bsonType": "double",
+        "description": "Optical graduation for the left lens - required"
+      },
+      "graduationRight": {
+        "bsonType": "double",
+        "description": "Optical graduation for the right lens - required"
+      },
+      "frameType": {
+        "bsonType": "string",
+        "enum": ["floating", "plastic", "metallic"],
+        "description": "Type of frame material or construction - required"
+      },
+      "frameColor": {
+        "bsonType": "string",
+        "description": "Color of the frame - required"
+      },
+      "lensColor": {
+        "bsonType": "string",
+        "description": "Color or tint of the lenses - required"
+      },
+      "price": {
+        "bsonType": "double",
+        "minimum": 0,
+        "description": "Retail price of the glasses - required"
+      },
+      "providerId": {
+        "bsonType": "objectId",
+        "description": "Reference to the provider that supplies these glasses - required"
+      }
+    }
+  }
+}
